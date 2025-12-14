@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sara Creasiones 💖 | Joyería Pastel</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+
+    <!-- Botón Flotante Carrito -->
+    <div id="cart-icon-container">
+        <button id="btn-carrito" onclick="toggleCarrito()">
+            🛒
+            <span id="cart-count">0</span>
+        </button>
+    </div>
+
+    <!-- Modal Carrito -->
+    <div id="carrito-modal" class="carrito-modal">
+        <h2>Tu Carrito 🛍️</h2>
+        <ul id="lista-carrito-modal">
+            <li>Tu carrito está vacío 💖</li>
+        </ul>
+        <h3>Total: $<span id="total-modal">0</span></h3>
+        <button class="vaciar-carrito" onclick="vaciarCarrito()">Limpiar Carrito 🗑️</button>
+        <button class="btn-add" style="width:100%; margin-top:10px; background:#ff1493; color:white;"
+            onclick="irADomicilios()">
+            Ir a Pagar ✨
+        </button>
+    </div>
+
+    <header>
+        <div class="logo">
+            <img src="images/20251214_0124_image-removebg-preview.png" alt="Logo Sara Creasiones">
+        </div>
+
+        <h1> Sara Creasiones </h1>
+
+        <div class="menu-container">
+            <nav class="menu">
+                <ul>
+                    <li><a href="#productos">Colección</a></li>
+                    <li><a href="#domicilios">Domicilios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="productos">
+        <div style="text-align:center; margin-bottom: 20px;">
+            <h2 style="font-size: 3.5rem;">Nuestras Joyas ✨</h2>
+        </div>
+
+        <div class="grid-container">
+            <!-- Producto 1 -->
+            <div class="card">
+                <img src="" alt="Pulsera">
+                <h3>Pulsera Amor</h3>
+                <p class="precio">$15.000</p>
+                <button class="btn-add" onclick="agregarProducto('Pulsera Amor', 15000)">Agregar al Carrito �</button>
+            </div>
+            <!-- Producto 2 -->
+            <div class="card">
+                <img src="" alt="Pulsera">
+                <h3>Pulsera Neon Pink</h3>
+                <p class="precio">$22.000</p>
+                <button class="btn-add" onclick="agregarProducto('Pulsera Neon Pink', 22000)">Agregar al Carrito
+                    �</button>
+            </div>
+            <!-- Producto 3 -->
+            <div class="card">
+                <img src="" alt="Pulsera">
+                <h3>Set Princesa</h3>
+                <p class="precio">$40.000</p>
+                <button class="btn-add" onclick="agregarProducto('Set Princesa', 40000)">Agregar al Carrito �</button>
+            </div>
+            <!-- Producto 4 -->
+            <div class="card">
+                <img src="" alt="Pulsera">
+                <h3>Hilo Rojo Suerte</h3>
+                <p class="precio">$12.000</p>
+                <button class="btn-add" onclick="agregarProducto('Hilo Rojo Suerte', 12000)">Agregar al Carrito
+                    �</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="domicilios" class="info-section">
+
+        <!-- Formulario -->
+        <div class="form-container">
+            <h2>🛵 Datos de Envío</h2>
+            <form onsubmit="enviarPedido(event)">
+                <label>Tu Nombre:</label>
+                <input type="text" id="nombre" class="input-neon" placeholder="Princesa..." required>
+
+                <label>Dirección:</label>
+                <input type="text" id="direccion" class="input-neon" placeholder="Calle..." required>
+
+                <label>Ciudad:</label>
+                <input type="text" id="ciudad" class="input-neon" placeholder="Medellín..." required>
+
+                <div
+                    style="background: #fff0f5; padding: 15px; border-radius: 15px; margin-top:20px; border:1px solid #ff69b4;">
+                    <h4>Total a Pagar: $<span id="total-form">0</span></h4>
+                    <p style="font-size:0.8rem;">(Productos seleccionados en el carrito)</p>
+                </div>
+            </form>
+        </div>
+
+        <!-- Pagos Funcionales -->
+        <div class="pagos-container">
+            <h2>💳 Métodos de Pago</h2>
+            <p style="margin-bottom:20px;">Haz clic en tu método preferido:</p>
+
+            <!-- Botón Nequi Directo -->
+            <button class="payment-btn btn-nequi" onclick="pagarNequi()">
+                <span>📱</span> Nequi: 3127117940 <br>
+                <small style="font-size:0.8em; opacity:0.9;">(Clic para ir a Nequi)</small>
+            </button>
+
+            <!-- Botón Bancolombia Directo -->
+            <!-- NOTA: Para que lleve 'directamente' a tu cuenta, necesitas un Link de Cobro Wompi o similar. 
+                 Por ahora, redirige al portal y muestra tu cuenta. -->
+            <button class="payment-btn btn-bancolombia" onclick="pagarBancolombia()">
+                <span>🏦</span> Bancolombia Ahorros: 0026391555 <br>
+                <small style="font-size:0.8em; opacity:0.9;">(Clic para ir al Banco)</small>
+            </button>
+
+            <button class="payment-btn btn-efectivo"
+                onclick="alert('💵 ¡Súper! Pagarás en efectivo al recibir tu pedido.')">
+                <span>💵</span> Pago Contra Entrega
+            </button>
+
+            <!-- Botón Final De Enviar Pedido (Estético para completar el flujo) -->
+            <button class="btn-add"
+                style="background:#ff1493; color:white; width:100%; margin-top:20px; font-size:1.2rem;"
+                onclick="enviarPedido(null)">
+                Enviar Mi Pedido por WhatsApp 💬
+            </button>
+        </div>
+
+    </section>
+
+    <footer id="contacto">
+        <h3>Síguenos @SaraCreasiones 🌹</h3>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/saracreasiones08?igsh=Ym1qZGtndGwzNXJy" target="_blank"
+                title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/573127117940" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Lógica del Carrito
+        let carrito = [];
+        let total = 0;
+
+        function toggleCarrito() {
+            document.getElementById('carrito-modal').classList.toggle('activo');
+        }
+
+        function agregarProducto(nombre, precio) {
+            carrito.push({ nombre, precio });
+            total += precio;
+            actualizarUI();
+
+            // Efecto Visual en Botón (Temporal)
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = "¡Agregado! ✨";
+
+            // Efecto Persistente en Tarjeta (Seleccionada)
+            const card = btn.closest('.card');
+            if (card) {
+                card.classList.add('seleccionada');
+            }
+
+            setTimeout(() => {
+                btn.innerText = originalText;
+            }, 1000);
+        }
+
+        function vaciarCarrito() {
+            carrito = [];
+            total = 0;
+            actualizarUI();
+        }
+
+        function actualizarUI() {
+            // Actualizar Contador
+            document.getElementById('cart-count').innerText = carrito.length;
+
+            // Actualizar Modal
+            const listaModal = document.getElementById('lista-carrito-modal');
+            listaModal.innerHTML = '';
+
+            if (carrito.length === 0) {
+                listaModal.innerHTML = '<li>Tu carrito está vacío 💖</li>';
+            } else {
+                carrito.forEach((item) => {
+                    const li = document.createElement('li');
+                    li.innerText = `${item.nombre} - $${item.precio}`;
+                    listaModal.appendChild(li);
+                });
+            }
+
+            document.getElementById('total-modal').innerText = total.toLocaleString();
+            document.getElementById('total-form').innerText = total.toLocaleString();
+        }
+
+        function irADomicilios() {
+            document.getElementById('domicilios').scrollIntoView({ behavior: 'smooth' });
+            toggleCarrito(); // Cerrar modal
+        }
+
+        function pagarBancolombia() {
+            // Simplemente abre el banco
+            window.open("https://www.bancolombia.com/personas", "_blank");
+        }
+
+        function pagarNequi() {
+            // Simplemente abre Nequi
+            window.open("https://www.nequi.com.co/", "_blank");
+        }
+
+        function enviarPedido(e) {
+            if (e) e.preventDefault();
+
+            if (carrito.length === 0) {
+                alert("¡Ups! Tu carrito está vacío. Agrega pulseritas primero �");
+                return;
+            }
+
+            const nombre = document.getElementById('nombre').value;
+            if (!nombre && !e) { // Si clica el boton grande sin llenar nombre
+                alert("Por favor llena tus datos de envío arriba ⬆️");
+                document.getElementById('nombre').focus();
+                return;
+            }
+
+            const mensaje = `¡Hola! 👸🏻 Quiero hacer un pedido por valor de $${total.toLocaleString()}.\n\nMis datos son:\n- Nombre: ${nombre}\n- Dirección: ${document.getElementById('direccion').value}\n- Ciudad: ${document.getElementById('ciudad').value}\n\nProductos:\n${carrito.map(p => `- ${p.nombre} ($${p.precio})`).join('\n')}`;
+
+            alert(`¡Gracias ${nombre || 'Princesa'}! ✨\nTu pedido ha sido preparado. Te llevaremos a WhatsApp para confirmarlo.`);
+
+            // Redirigir a WhatsApp
+            window.open(`https://wa.me/573127117940?text=${encodeURIComponent(mensaje)}`, '_blank');
+        }
+    </script>
+</body>
+
+</html>
